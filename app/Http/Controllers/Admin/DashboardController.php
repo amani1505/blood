@@ -10,4 +10,12 @@ class DashboardController extends Controller
     {
         return view('admin.index');
     }
+    public function donor()
+    {
+        return view('admin.donor');
+    }
+    public function addDonor()
+    {
+        return view('admin.addDonor');
+    }
 }

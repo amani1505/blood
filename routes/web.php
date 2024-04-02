@@ -18,4 +18,11 @@ Route::view('routes', 'routes', compact('routes'));
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // Dashboard
     Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard');
+    // Route::get('/donor', [Admin\DashboardController::class, 'donor'])->name('donors');
+});
+Route::name('donor.')->prefix('donor')->middleware(['auth', 'admin'])->group(function () {
+    // Dashboard
+    Route::get('/', [Admin\DashboardController::class, 'donor'])->name('donors');
+    Route::get('/create', [Admin\DashboardController::class, 'addDonor'])->name('createDonor');
+   
 });

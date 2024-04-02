@@ -14,6 +14,7 @@ class Donor extends Model
         'email',
         'mobile',
         'quality',
+        'gender',
         'blood_type_id',
     ];
 

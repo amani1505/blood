@@ -22,30 +22,30 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="">
 
 <div class="container">
 
     <!-- Outer Row -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center items-center ">
 
         <div class="col-xl-10 col-lg-12 col-md-9 ">
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card o-hidden border-0 shadow my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block"
-                             style="background: url({{ asset('img/logo.png') }});
+                    <div class="row p-2">
+                        <div class="col-lg-6 d-none d-lg-block "
+                             style="background: url({{ asset('img/login.webp') }});
                                  background-position: center;
-                                 background-size: 75%;
+                                 background-size: 100%;
                                  background-repeat: no-repeat;
                                  "></div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 border-left border-5 border-dark">
                             <div class="p-5 mt-5 mb-5">
                                 <div class="text-center mb-5">
-                                    <div class="text-center mb-5">
-                                        <h1 class="h4 text-gray-900">LARADMIN</h1>
+                                    <div class="text-center mb-5 ">
+                                        <h1 class="h4 text-gray-900">CBMS</h1>
                                     </div>
                                     <form class="user" action="{{ url('/login') }}" method="post">
                                         @csrf
