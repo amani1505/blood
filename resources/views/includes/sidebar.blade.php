@@ -47,7 +47,14 @@
         <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="fas fa-bullhorn"></i>
-                <span>Requests</span>
+                <span>Blood Requests</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-history"></i>
+                <span>Request History</span>
             </a>
         </li>
         <hr class="sidebar-divider">
