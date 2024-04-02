@@ -14,7 +14,7 @@
             <i class="fas fa-graduation-cap"></i>
         </div>
         <div class="sidebar-brand-text mx-3">
-            Blood
+            LARADMIN
         </div>
     </a>
 
@@ -50,9 +50,9 @@
 
 <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-    {{-- <!-- Sidebar Toggler (Sidebar) -->
+    <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div> --}}
+    </div>
 </ul>
 <!-- End of Sidebar -->

@@ -1,51 +1,21 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{AuthController, Admin};
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// require __DIR__.'/auth.php';
-
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Auth
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/', 'index')->name('login');
+    Route::post('/login', 'login');
+    Route::get('/logout', 'logout');
 });
 
-Route::get('/', function () {
-    return redirect()->route('home'); // or 'dashboard' if you prefer
-});
+// Routes
+$routes = Route::getRoutes();
+Route::view('routes', 'routes', compact('routes'));
 
-require __DIR__.'/auth.php';
+// Admin
+Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    // Dashboard
+    Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard');
+});
