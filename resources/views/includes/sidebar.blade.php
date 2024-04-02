@@ -11,10 +11,11 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-graduation-cap"></i>
+         
+            <i class="fas fa-hand-holding-heart"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">
-            LARADMIN
+        <div class="sidebar-brand-text mx-3 uppercase">
+            cbms
         </div>
     </a>
 
@@ -29,6 +30,35 @@
             </a>
         </li>
         <hr class="sidebar-divider">
+        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-user fa-5x "></i>
+                <span>Donors</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-building"></i>
+                <span>Hospitals</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-bullhorn"></i>
+                <span>Requests</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+    
+        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-hand-holding-heart"></i>
+                <span>Blood Stock</span>
+            </a>
+        </li>
+        {{-- <hr class="sidebar-divider">
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                aria-expanded="true" aria-controls="collapseTwo">
@@ -45,7 +75,15 @@
                     </a>
                 </div>
             </div>
+        </li> --}}
+        <hr class="sidebar-divider">
+        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-user-circle"></i>
+                <span>Profile</span>
+            </a>
         </li>
+      
 @endif
 
 <!-- Divider -->
