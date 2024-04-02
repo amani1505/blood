@@ -17,6 +17,7 @@ class User extends Authenticatable
         'username',
         'password',
         'role',
+        'hospital_id'
     ];
 
     protected $hidden = [
@@ -24,9 +25,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function mahasiswa()
+    public function hospital()
     {
-        return $this->hasOne(Mahasiswa::class, 'nim', 'username');
+        return $this->belongsTo(Hospital::class, 'id', 'hospital_id');
     }
 
     public function dosen()

@@ -26,3 +26,9 @@ Route::name('donor.')->prefix('donor')->middleware(['auth', 'admin'])->group(fun
     Route::get('/create', [Admin\DashboardController::class, 'addDonor'])->name('createDonor');
    
 });
+Route::name('hospital.')->prefix('hospital')->middleware(['auth', 'admin'])->group(function () {
+    // Dashboard
+    Route::get('/', [Admin\DashboardController::class, 'hospital'])->name('hospitals');
+    Route::get('/create', [Admin\DashboardController::class, 'addHospital'])->name('createHospital');
+   
+});

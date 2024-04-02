@@ -1,3 +1,8 @@
+@php
+    $prefix = Request::route()->getPrefix();
+    $route = Route::current()->getName();
+    $url = Request::getRequestUri();
+@endphp
 @extends('layouts.app')
 @section('content')
     <!-- Page Heading -->
@@ -244,7 +249,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <a href="" style="text-decoration:none;">
+            <a href="{{ route('donor.donors') }}" style="text-decoration:none;">
                 <div class="mb-4">
                     <div class="card h-auto">
                         <div class="card-body">

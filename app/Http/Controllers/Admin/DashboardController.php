@@ -18,4 +18,13 @@ class DashboardController extends Controller
     {
         return view('admin.addDonor');
     }
+    public function hospital()
+    {
+        return view('admin.hospitals');
+    }
+    public function addHospital()
+    {
+        return view('admin.addHospital');
+    }
+    
 }
