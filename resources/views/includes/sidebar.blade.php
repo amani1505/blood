@@ -32,7 +32,7 @@
         <hr class="sidebar-divider">
         <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                <i class="fas fa-user fa-5x "></i>
+                <i class="fas fa-user  "></i>
                 <span>Donors</span>
             </a>
         </li>
