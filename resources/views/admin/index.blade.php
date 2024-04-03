@@ -248,7 +248,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <a href="{{ route('donor.donors') }}" style="text-decoration:none;">
                 <div class="mb-4">
                     <div class="card h-auto">
@@ -272,7 +272,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div> --}}
 
         <div class="col-md-4">
             <a href="" style="text-decoration:none;">

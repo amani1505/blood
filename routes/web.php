@@ -20,16 +20,15 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(fun
     Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard');
     // Route::get('/donor', [Admin\DashboardController::class, 'donor'])->name('donors');
 });
-Route::name('donor.')->prefix('donor')->middleware(['auth', 'admin'])->group(function () {
-    // Dashboard
-    Route::get('/', [Admin\DashboardController::class, 'donor'])->name('donors');
-    Route::get('/create', [Admin\DashboardController::class, 'addDonor'])->name('createDonor');
+// Route::name('donor.')->prefix('donor')->middleware(['auth', 'admin'])->group(function () {
+//     // Dashboard
+//     Route::get('/', [Admin\DashboardController::class, 'donor'])->name('donors');
+//     Route::get('/create', [Admin\DashboardController::class, 'addDonor'])->name('createDonor');
    
-});
+// });
 Route::name('hospital.')->prefix('hospital')->middleware(['auth', 'admin'])->group(function () {
-    // Dashboard
-    Route::get('/', [Admin\DashboardController::class, 'hospital'])->name('hospitals');
-    Route::get('/create', [Admin\DashboardController::class, 'addHospital'])->name('createHospital');
+    Route::get('/', [Admin\HospitalsController::class, 'index'])->name('hospitals');
+    // Route::get('/create', [Admin\DashboardController::class, 'addHospital'])->name('createHospital');
    
 });
 

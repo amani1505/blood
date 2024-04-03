@@ -11,8 +11,16 @@ class AdminSeeder extends Seeder
     public function run()
     {
         Hospital::insert([
-            'name' => 'agacan',
-            'location'=>'Pambeach'
+            'name' => 'Aga Khan',
+            'location'=>'Pam Beach'
+        ]);
+        Hospital::insert([
+            'name' => 'Muhimbil',
+            'location'=>'Muhimbili'
+        ]);
+        Hospital::insert([
+            'name' => 'Amana',
+            'location'=>'Buguruni'
         ]);
         User::insert([
             'first_name'=>'Robinson',

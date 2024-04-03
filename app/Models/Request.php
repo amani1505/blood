@@ -14,5 +14,15 @@ class Request extends Model
         'blood_type_id', 
         'hospital_id', 
     ];
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class, 'id', 'hospital_id');
+    }
+    public function bloodType()
+    {
+        return $this->belongsTo(BloodGroup::class, 'id', 'blood_type_id');
+    }
+
     
 }
