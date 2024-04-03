@@ -32,3 +32,10 @@ Route::name('hospital.')->prefix('hospital')->middleware(['auth', 'admin'])->gro
     Route::get('/create', [Admin\DashboardController::class, 'addHospital'])->name('createHospital');
    
 });
+
+Route::name('request.')->prefix('request')->middleware(['auth', 'admin'])->group(function () {
+    // Dashboard
+    Route::get('/', [Admin\DashboardController::class, 'request'])->name('requests');
+    Route::get('/create', [Admin\DashboardController::class, 'addHospital'])->name('createHospital');
+   
+});

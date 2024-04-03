@@ -9,7 +9,7 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h4 mb-0 text-gray-800">Hospitals</h1>
+        <h1 class="h4 mb-0 text-gray-800">Blood Requests</h1>
     </div>
 
     <!-- Content Row -->
@@ -30,10 +30,12 @@
             <thead class="table-dark text-capitalize text-center">
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>Stock</th>
-                    <th>action</th>
+                    <th>Hospital</th>
+                    <th>Blood Type</th>
+                    <th>Quantity</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                 
               
                     
 
@@ -42,25 +44,25 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>John Doe</td>
-                    <td>john@example.com</td>
-                    <td>10%</td>
-                    <td class="text-center ">  
-                        <a href="" class="bg-info p-2 rounded-circle w-10 h-10 text-white">
-                            <i class="fas fa-eye fa-1x"></i>
-                        </a>
-                    </td>
+                    <td>Muhimbili</td>
+                    <td>A+</td>
+                    <td>1 Litre</td>
+                    <td>female</td>
+                 
+                        <td class="text-center ">  
+                            <div class="bg-warning rounded text-white ">pending</div>
+                        </td>
+                   
                 
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Jane Smith</td>
-                    <td>jane@example.com</td>
-                    <td>20%</td>
+                    <td>Aga Khan Hospital</td>
+                    <td>B+</td>
+                    <td>2 Litre</td>
+                    <td>male</td>
                     <td class="text-center ">  
-                        <a href="" class="bg-info p-2 rounded-circle w-10 h-10 text-white">
-                            <i class="fas fa-eye fa-1x"></i>
-                        </a>
+                        <div class="bg-success rounded text-white ">approved</div>
                     </td>
                  
                 </tr>

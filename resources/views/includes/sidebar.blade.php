@@ -44,8 +44,8 @@
             </a>
         </li>
         <hr class="sidebar-divider">
-        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <li class="nav-item {{ str_contains($route, 'requests')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('request.requests') }}">
                 <i class="fas fa-bullhorn"></i>
                 <span>Blood Requests</span>
             </a>

@@ -26,5 +26,9 @@ class DashboardController extends Controller
     {
         return view('admin.addHospital');
     }
+    public function request()
+    {
+        return view('admin.request');
+    }
     
 }
