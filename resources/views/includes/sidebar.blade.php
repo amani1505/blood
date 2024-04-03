@@ -30,10 +30,16 @@
             </a>
         </li>
         <hr class="sidebar-divider">
-        <li class="nav-item {{ str_contains($route, 'donors')  ? 'active' : '' }} ">
+        {{-- <li class="nav-item {{ str_contains($route, 'donors')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('donor.donors') }}">
                 <i class="fas fa-user  "></i>
                 <span>Donors</span>
+            </a>
+        </li> --}}
+        <li class="nav-item {{ str_contains($route, 'stocks')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('stock.stocks') }}">
+                <i class="fas fa-hand-holding-heart"></i>
+                <span>Blood Stock</span>
             </a>
         </li>
         <hr class="sidebar-divider">
@@ -57,14 +63,9 @@
                 <span>Request History</span>
             </a>
         </li>
-        <hr class="sidebar-divider">
+        {{-- <hr class="sidebar-divider"> --}}
     
-        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                <i class="fas fa-hand-holding-heart"></i>
-                <span>Blood Stock</span>
-            </a>
-        </li>
+      
         {{-- <hr class="sidebar-divider">
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
@@ -83,13 +84,13 @@
                 </div>
             </div>
         </li> --}}
-        <hr class="sidebar-divider">
+        {{-- <hr class="sidebar-divider">
         <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="fas fa-user-circle"></i>
                 <span>Profile</span>
             </a>
-        </li>
+        </li> --}}
       
 @endif
 

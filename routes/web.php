@@ -34,15 +34,17 @@ Route::name('hospital.')->prefix('hospital')->middleware(['auth', 'admin'])->gro
 });
 
 Route::name('request.')->prefix('request')->middleware(['auth', 'admin'])->group(function () {
-    // Dashboard
     Route::get('/', [Admin\DashboardController::class, 'request'])->name('requests');
-   
-   
+
 });
 Route::name('requestHistory.')->prefix('requestHistory')->middleware(['auth', 'admin'])->group(function () {
-    // Dashboard
     Route::get('/', [Admin\DashboardController::class, 'requestHistory'])->name('history');
     Route::get('/create', [Admin\DashboardController::class, 'addRequest'])->name('createRequest');
    
    
+});
+Route::name('stock.')->prefix('stock')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [Admin\DashboardController::class, 'stock'])->name('stocks');
+    Route::get('/create', [Admin\DashboardController::class, 'addStock'])->name('createStock');
+
 });

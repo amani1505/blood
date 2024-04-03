@@ -38,5 +38,13 @@ class DashboardController extends Controller
     {
         return view('admin.addRequest');
     }
+    public function stock()
+    {
+        return view('admin.stock');
+    }
+    public function addStock()
+    {
+        return view('admin.addStock');
+    }
     
 }

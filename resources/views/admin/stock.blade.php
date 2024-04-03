@@ -9,15 +9,15 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h4 mb-0 text-gray-800">Request History</h1>
+        <h1 class="h4 mb-0 text-gray-800">Blood Stock</h1>
     </div>
 
     <!-- Content Row -->
     <div class="container-fluid  bg-white py-3">
         <div class="d-flex justify-content-end mb-3">
-            <a href="{{ route('requestHistory.createRequest') }}" class="btn btn-info ">
+            <a href="{{ route('stock.createStock') }}" class="btn btn-info ">
                 <i class="fas fa-plus"></i>
-                Add Request</a>
+                Add Stock</a>
 
         </div> 
      
@@ -30,10 +30,10 @@
             <thead class="table-dark text-capitalize text-center">
                 <tr>
                     <th>#</th>
-                    <th>Hospital</th>
+                    
                     <th>Blood Type</th>
                     <th>Volume (ml)</th>
-                    <th>Gender</th>
+                    
                    
                  
               
@@ -44,10 +44,10 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Muhimbili</td>
+                   
                     <td>A+</td>
-                    <td>1 Litre</td>
-                    <td>female</td>
+                    <td>1 </td>
+                 
                  
                      
                    
@@ -55,10 +55,10 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Aga Khan Hospital</td>
+                   
                     <td>B+</td>
-                    <td>2 Litre</td>
-                    <td>male</td>
+                    <td>2</td>
+                
                   
                  
                 </tr>
