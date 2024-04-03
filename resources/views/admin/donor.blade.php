@@ -34,6 +34,7 @@
                     <th>Email</th>
                     <th>mobile number</th>
                     <th>blood type</th>
+                    <th>Volume (ml)</th>
                     <th>gender</th>
                     
 
@@ -46,6 +47,7 @@
                     <td>john@example.com</td>
                     <td>12333444</td>
                     <td class="text-uppercase">A+</td>
+                    <td>457</td>
                     <td class="text-capitalize">male</td>
 
                 </tr>
@@ -55,6 +57,7 @@
                     <td>jane@example.com</td>
                     <td>12333444</td>
                     <td class="text-uppercase">A+</td>
+                    <td>323</td>
                     <td class="text-capitalize">male</td>
                 </tr>
                 <!-- Add more rows as needed -->

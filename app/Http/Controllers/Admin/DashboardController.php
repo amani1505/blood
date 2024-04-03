@@ -30,5 +30,13 @@ class DashboardController extends Controller
     {
         return view('admin.request');
     }
+    public function requestHistory()
+    {
+        return view('admin.requestHistory');
+    }
+    public function addRequest()
+    {
+        return view('admin.addRequest');
+    }
     
 }

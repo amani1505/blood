@@ -9,17 +9,17 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h4 mb-0 text-gray-800">Blood Requests</h1>
+        <h1 class="h4 mb-0 text-gray-800">Request History</h1>
     </div>
 
     <!-- Content Row -->
     <div class="container-fluid  bg-white py-3">
-        {{-- <div class="d-flex justify-content-end mb-3">
-            <a href="{{ route('hospital.createHospital') }}" class="btn btn-info ">
+        <div class="d-flex justify-content-end mb-3">
+            <a href="{{ route('requestHistory.createRequest') }}" class="btn btn-info ">
                 <i class="fas fa-plus"></i>
-                Add Hospital</a>
+                Add Request</a>
 
-        </div> --}}
+        </div> 
      
         <!-- Search Box -->
         <div class="mb-3">
