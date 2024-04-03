@@ -11,10 +11,13 @@ class AdminSeeder extends Seeder
     public function run()
     {
         User::insert([
+            'first_name'=>'Robinson',
+            'last_name'=>'Anthony',
             'username' => 'admin',
             'password' => bcrypt('password'),
             'role' => 'ADMIN',
-            'hospital_id' => 1
+           
+        
         ]);
         Hospital::insert([
             'name' => 'agacan',

@@ -19,8 +19,8 @@ class Donor extends Model
     ];
 
 
-    public function bloodType()
-    {
-        return $this->belongsTo(BloodGroup::class, 'id', 'blood_type_id');
-    }
+    // public function bloodType()
+    // {
+    //     return $this->belongsTo(BloodGroup::class, 'id', 'blood_type_id');
+    // }
 }

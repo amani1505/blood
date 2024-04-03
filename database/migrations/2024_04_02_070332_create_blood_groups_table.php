@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('blood_groups', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->string('group');
-            $table->id('hospital_id');
-            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 
+            // $table->id('hospital_id');
+            // $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

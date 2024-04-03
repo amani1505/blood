@@ -12,13 +12,13 @@ class Hospital extends Model
         'location',
         'name'   
     ];
-    public function bloodTypes()
-    {
-        return $this->hasMany(BloodGroup::class, 'blood_type_id','id');
-    }
-    public function users()
-    {
-        return $this->hasMany(User::class, 'user_id','id');
-    }
+    // public function bloodTypes()
+    // {
+    //     return $this->hasMany(BloodGroup::class, 'blood_type_id','id');
+    // }
+    // public function users()
+    // {
+    //     return $this->hasMany(User::class, 'user_id','id');
+    // }
 
 }

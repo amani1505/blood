@@ -25,10 +25,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function hospital()
-    {
-        return $this->belongsTo(Hospital::class, 'id', 'hospital_id');
-    }
+    // public function hospital()
+    // {
+    //     return $this->belongsTo(Hospital::class, 'id', 'hospital_id');
+    // }
 
     public function dosen()
     {

@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('donors', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('mobile');
             $table->integer('quality');
             $table->string('gender');
-            $table->id('blood_type_id');
-            $table->foreign('blood_type_id')->references('id')->on('blood_groups')->onDelete('cascade'); 
+            // $table->id('blood_type_id');
+            // $table->foreign('blood_type_id')->references('id')->on('blood_groups')->onDelete('cascade'); 
          
             $table->timestamps();
         });
