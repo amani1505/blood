@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('blood_groups', function (Blueprint $table) {
             $table->id();
             $table->string('group');
-            // $table->id('hospital_id');
-            // $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 
+            $table->unsignedBigInteger('hospital_id');
+            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

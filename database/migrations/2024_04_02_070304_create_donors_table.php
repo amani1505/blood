@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('mobile');
             $table->integer('quality');
             $table->string('gender');
-            // $table->id('blood_type_id');
-            // $table->foreign('blood_type_id')->references('id')->on('blood_groups')->onDelete('cascade'); 
+            $table->unsignedBigInteger('blood_type_id');
+            $table->foreign('blood_type_id')->references('id')->on('blood_groups')->onDelete('cascade'); 
          
             $table->timestamps();
         });
