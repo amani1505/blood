@@ -11,8 +11,8 @@ class HospitalsController extends Controller
     //
     public function index()
     {
-        $companies = Hospital::orderBy('id','desc')->paginate(5);
-        return view('admin.hospital.index');
+        $hospitals = Hospital::orderBy('id','desc')->paginate(5);
+        return view('admin.hospital.index',compact('hospitals'));
     }
 
 

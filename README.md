@@ -23,7 +23,7 @@ If you want to check the original template in StartBootstrap, [click here](https
 ## Installation
 1. Clone this project
     ```bash
-    git clone https://github.com/gonexwind/laradmin
+    git clone https://github.com/amani15/blood
     cd blood
     ```
 

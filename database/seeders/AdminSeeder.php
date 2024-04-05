@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BloodGroup;
 use App\Models\Hospital;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -29,9 +30,24 @@ class AdminSeeder extends Seeder
             'password' => bcrypt('password'),
             'role' => 'ADMIN',
             'hospital_id'=> '1'
-           
-        
+    
         ]);
+        BloodGroup::insert([
+            'group'=>'A+',
+            'description'=>'Can get Receive from O+ and A+ also can Give A+ and AB',
+            'hospital_id' => 1,
+        ]);
+        BloodGroup::insert([
+            'group'=>'AB+',
+            'description'=>'Can get Receive from All also can Give only AB',
+            'hospital_id' => 1,
+        ]);
+        BloodGroup::insert([
+            'group'=>'B+',
+            'description'=>'Can get Receive from O+ and B+ also can Give B+ and AB',
+            'hospital_id' => 1,
+        ]);
+      
        
     }
 }

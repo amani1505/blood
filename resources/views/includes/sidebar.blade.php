@@ -30,12 +30,13 @@
             </a>
         </li>
         <hr class="sidebar-divider">
-        {{-- <li class="nav-item {{ str_contains($route, 'donors')  ? 'active' : '' }} ">
-            <a class="nav-link" href="{{ route('donor.donors') }}">
-                <i class="fas fa-user  "></i>
-                <span>Donors</span>
+        <li class="nav-item {{ str_contains($route, 'bloodTypies')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('bloodType.bloodTypies') }}">
+                <i class="fas fa-tint "></i>
+                <span>Blood Type</span>
             </a>
-        </li> --}}
+        </li>
+        <hr class="sidebar-divider">
         <li class="nav-item {{ str_contains($route, 'stocks')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('stock.stocks') }}">
                 <i class="fas fa-hand-holding-heart"></i>

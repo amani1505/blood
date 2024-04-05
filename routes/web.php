@@ -20,12 +20,13 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(fun
     Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard');
     // Route::get('/donor', [Admin\DashboardController::class, 'donor'])->name('donors');
 });
-// Route::name('donor.')->prefix('donor')->middleware(['auth', 'admin'])->group(function () {
-//     // Dashboard
-//     Route::get('/', [Admin\DashboardController::class, 'donor'])->name('donors');
-//     Route::get('/create', [Admin\DashboardController::class, 'addDonor'])->name('createDonor');
+
+Route::name('bloodType.')->prefix('bloodType')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [Admin\BloodTypeController::class, 'index'])->name('bloodTypies');
+    Route::get('/create', [Admin\BloodTypeController::class, 'addBloodType'])->name('createBloodType');
    
-// });
+});
+
 Route::name('hospital.')->prefix('hospital')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [Admin\HospitalsController::class, 'index'])->name('hospitals');
     // Route::get('/create', [Admin\DashboardController::class, 'addHospital'])->name('createHospital');
