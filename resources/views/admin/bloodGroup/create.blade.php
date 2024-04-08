@@ -5,6 +5,11 @@
     <h1 class="h4 mb-0 text-gray-800">Blood Type</h1>
 </div>
 <div class="container  bg-white rounded p-4">
+    <div class="pull-right mb-1">
+        <a class="btn btn-light" href="{{ route('bloodType.bloodTypies') }}" enctype="multipart/form-data">
+            <i class="fas fa-angle-left"></i>
+        </a>
+    </div>
     <h4 class="mb-3">Blood Type Registration</h4>
     
     <!-- Form -->
@@ -26,13 +31,13 @@
             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3 d-none">
+        {{-- <div class="mb-3 d-none">
             <label for="last_name" class="form-label">Description</label>
             <input class="form-control" id="exampleFormControlTextarea1" name='hospital_id' value={{auth()->user()->hospital_id}} >
             @error('name')
             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
        
       
        

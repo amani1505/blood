@@ -40,7 +40,7 @@ class AdminSeeder extends Seeder
         BloodGroup::insert([
             'group'=>'AB+',
             'description'=>'Can get Receive from All also can Give only AB',
-            'hospital_id' => 1,
+            'hospital_id' => 2,
         ]);
         BloodGroup::insert([
             'group'=>'B+',

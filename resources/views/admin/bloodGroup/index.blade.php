@@ -38,7 +38,7 @@
             <table class="table table-bordered table-hover">
                 <thead class="text-dark text-capitalize text-center">
                     <tr>
-                        <th>@sortablelink('id', '#')</th>
+                        <th> #</th>
                         <th>@sortablelink('group')</th>
                         <th>@sortablelink('description')</th>
                         <th>Action</th>
@@ -49,10 +49,10 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    @php $counter = 1 @endphp
                     @foreach ($bloodTypes as $bloodType)
                         <tr>
-                            <td>{{ $bloodType->id }}</td>
+                            <td>{{ $counter}}</td>
                             <td>{{ $bloodType->group }}</td>
                             <td>{{ $bloodType->description }}</td>
 
@@ -69,6 +69,7 @@
 
 
                         </tr>
+                        @php $counter++ @endphp
                     @endforeach
 
 

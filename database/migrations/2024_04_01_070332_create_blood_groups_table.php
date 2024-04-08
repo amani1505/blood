@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('blood_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('group')->unique();
+            $table->string('group');
             $table->string('description');
             $table->unsignedBigInteger('hospital_id');
             $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 

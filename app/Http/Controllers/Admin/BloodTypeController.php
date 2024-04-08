@@ -17,19 +17,24 @@ class BloodTypeController extends Controller
     public function index(Request $request)
     {
         $filter = $request->query('filter');
-        $sort = $request->get('id');
-        $direction = $request->get('direction', 'asc');
-        $sort = !empty($sort) ? $sort : 'id';
+    $user = $request->user();
+    
+    $sort = $request->get('id');
+    $direction = $request->get('direction', 'asc');
+    $sort = !empty($sort) ? $sort : 'id';
 
-        if (!empty($filter)) {
+    $query = BloodGroup::orderBy($sort, $direction);
 
-            $bloodTypes =  BloodGroup::orderBy($sort, $direction)->where('blood_groups.group', 'like', '%' . $filter . '%')->paginate(10);
-        } else {
+    if (!empty($filter)) {
+        $query->where('group', 'like', '%' . $filter . '%');
+    }
 
-            $bloodTypes = BloodGroup::orderBy($sort, $direction)->paginate(10);
-        }
+    // Filter blood types based on user's institute ID
+    $query->where('hospital_id', $user->hospital_id);
 
-        return view('admin.bloodGroup.index', compact('bloodTypes', 'sort', 'direction', 'filter'));
+    $bloodTypes = $query->paginate(10);
+
+    return view('admin.bloodGroup.index', compact('bloodTypes', 'sort', 'direction', 'filter'));
     }
 
     public function create()
@@ -39,21 +44,23 @@ class BloodTypeController extends Controller
     public function store(Request $request)
 
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'group' => 'required',
             'description' => 'required',
-            'hospital_id' => 'required'
-
         ]);
+    
         try {
-            BloodGroup::create($request->post());
+            // Create a new BloodGroup instance and assign the authenticated user's hospital_id
+            $bloodGroup = new BloodGroup();
+            $bloodGroup->group = $validatedData['group'];
+            $bloodGroup->description = $validatedData['description'];
+            $bloodGroup->hospital_id = $request->user()->hospital_id;
+            $bloodGroup->save();
+    
             return redirect()->route('bloodType.bloodTypies')->with(['message' => 'Blood Type has been created successfully.', 'alert-type' => 'success']);
-        } catch (QueryException $e) {
-            if ($e->errorInfo[1] === 1062) { // Duplicate entry error code
-                return back()->withErrors(['group' => 'Blood type already exists.'])->withInput()->with(['message' => 'Blood type already exists', 'alert-type' => 'error']);;
-            } else {
-                return back()->withErrors(['error' => 'An error occurred while processing your request. Please try again later.'])->withInput()->with(['message' => 'Error occurred while saving data.', 'alert-type' => 'error']);
-            }
+        } catch (\Exception $e) {
+            // Handle any exceptions that occur during the data creation process
+            return back()->withErrors(['error' => 'An error occurred while processing your request. Please try again later.'])->withInput()->with(['message' => 'Error occurred while saving data.', 'alert-type' => 'error']);
         }
     }
 

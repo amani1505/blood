@@ -5,10 +5,11 @@
     <h1 class="h4 mb-0 text-gray-800">Blood Type</h1>
 </div>
 <div class="container  bg-white rounded p-4">
-    {{-- <div class="pull-right">
-        <a class="btn btn-primary" href="{{ route('bloodType.bloodTypies') }}" enctype="multipart/form-data">
-            Back</a>
-    </div> --}}
+    <div class="pull-right mb-1">
+        <a class="btn btn-light" href="{{ route('bloodType.bloodTypies') }}" enctype="multipart/form-data">
+            <i class="fas fa-angle-left"></i>
+        </a>
+    </div>
     <h4 class="mb-3">Update Blood Type</h4>
     
     <!-- Form -->
