@@ -25,6 +25,11 @@ Route::name('bloodType.')->prefix('bloodType')->middleware(['auth', 'admin'])->g
     Route::get('/', [Admin\BloodTypeController::class, 'index'])->name('bloodTypies');
     Route::get('/create', [Admin\BloodTypeController::class, 'create'])->name('createBloodType');
     Route::post('/store', [Admin\BloodTypeController::class, 'store'])->name('store');
+    Route::get('/{id}/edit', [Admin\BloodTypeController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [Admin\BloodTypeController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [Admin\BloodTypeController::class, 'destroy'])->name('delete');
+
+
 
    
 });

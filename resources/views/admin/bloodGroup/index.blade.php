@@ -57,12 +57,13 @@
                             <td>{{ $bloodType->description }}</td>
 
                             <td class="text-center ">
-                                <a href="" class="btn btn-outline-info  rounded ">
+                                <a href="{{ route('bloodType.edit', $bloodType->id) }}"  class="btn btn-outline-info  rounded ">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="" class="btn btn-outline-danger  rounded ">
-                                    <i class="fas fa-trash "></i>
-                                </a>
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            
                             </td>
 
 
@@ -94,5 +95,27 @@
     </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this blood type?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <form action="{{ route('bloodType.delete', $bloodType->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

@@ -53,9 +53,36 @@ class BloodTypeController extends Controller
                 return back()->withErrors(['group' => 'Blood type already exists.'])->withInput()->with(['message' => 'Blood type already exists', 'alert-type' => 'error']);;
             } else {
                 return back()->withErrors(['error' => 'An error occurred while processing your request. Please try again later.'])->withInput()->with(['message' => 'Error occurred while saving data.', 'alert-type' => 'error']);
-            
-    
             }
         }
     }
+
+    public function edit($id)
+    {
+        $bloodType = BloodGroup::findOrFail($id);
+        return view('admin.bloodGroup.edit', compact('bloodType'));
+    }
+
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'group' => 'required',
+        'description' => 'required',
+        'hospital_id' => 'required'
+    ]);
+
+    try {
+        $bloodType = BloodGroup::findOrFail($id);
+        $bloodType->update($request->all());
+        return redirect()->route('bloodType.bloodTypies')->with(['message' => 'Blood Type has been updated successfully.', 'alert-type' => 'success']);
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => 'An error occurred while processing your request. Please try again later.'])->withInput()->with(['message' => 'Error occurred while updating data.', 'alert-type' => 'error']);
+    }
+}
+public function destroy($id)
+{
+    $bloodType = BloodGroup::findOrFail($id);
+    $bloodType->delete();
+    return redirect()->route('bloodType.bloodTypies')->with(['message' => 'Blood Type has been deleted successfully.', 'alert-type' => 'success']);
+}
 }
