@@ -6,16 +6,32 @@
 </div>
 <div class="container  bg-white rounded p-4">
     <h4 class="mb-3">Blood Type Registration</h4>
+    
     <!-- Form -->
-    <form>
-       
+    <form action="{{ route('bloodType.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('POST')
+    
         <div class="mb-3">
-            <label for="first_name" class="form-label">Type</label>
-            <input type="text" class="form-control" id="first_name" placeholder="Enter your blood type">
+            <label for="group" class="form-label">Type</label>
+            <input type="text" class="form-control" id="" placeholder="Enter your blood type" name='group'>
+            @error('group')
+            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
+            <label for="descripition" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='description'></textarea>
+            @error('description')
+            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3 d-none">
             <label for="last_name" class="form-label">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <input class="form-control" id="exampleFormControlTextarea1" name='hospital_id' value={{auth()->user()->hospital_id}} >
+            @error('name')
+            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+            @enderror
         </div>
        
       

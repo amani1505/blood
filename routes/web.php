@@ -18,12 +18,14 @@ Route::view('routes', 'routes', compact('routes'));
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // Dashboard
     Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard');
-    // Route::get('/donor', [Admin\DashboardController::class, 'donor'])->name('donors');
+   
 });
 
 Route::name('bloodType.')->prefix('bloodType')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [Admin\BloodTypeController::class, 'index'])->name('bloodTypies');
-    Route::get('/create', [Admin\BloodTypeController::class, 'addBloodType'])->name('createBloodType');
+    Route::get('/create', [Admin\BloodTypeController::class, 'create'])->name('createBloodType');
+    Route::post('/store', [Admin\BloodTypeController::class, 'store'])->name('store');
+
    
 });
 

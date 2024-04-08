@@ -45,6 +45,8 @@ class AuthController extends Controller
                 'message' => 'User and password wrong',
                 'alert-type' => 'error',
             ]);
+            $request->session()->put('user', $user);
+        
 
         return match (Auth::user()->role) {
             'ADMIN' => redirect()->route('admin.dashboard')->with([
