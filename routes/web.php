@@ -28,11 +28,18 @@ Route::name('bloodType.')->prefix('bloodType')->middleware(['auth', 'admin'])->g
     Route::get('/{id}/edit', [Admin\BloodTypeController::class, 'edit'])->name('edit');
     Route::put('/update/{id}', [Admin\BloodTypeController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [Admin\BloodTypeController::class, 'destroy'])->name('delete');
-
-
-
    
 });
+Route::name('stock.')->prefix('stock')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [Admin\BloodStockController::class, 'index'])->name('stocks');
+    Route::get('/create', [Admin\BloodStockController::class, 'create'])->name('create');
+    Route::post('/store', [Admin\BloodStockController::class, 'store'])->name('store');
+
+});
+
+
+
+
 
 Route::name('hospital.')->prefix('hospital')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [Admin\HospitalsController::class, 'index'])->name('hospitals');
@@ -49,9 +56,4 @@ Route::name('requestHistory.')->prefix('requestHistory')->middleware(['auth', 'a
     Route::get('/create', [Admin\DashboardController::class, 'addRequest'])->name('createRequest');
    
    
-});
-Route::name('stock.')->prefix('stock')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', [Admin\DashboardController::class, 'stock'])->name('stocks');
-    Route::get('/create', [Admin\DashboardController::class, 'addStock'])->name('createStock');
-
 });
