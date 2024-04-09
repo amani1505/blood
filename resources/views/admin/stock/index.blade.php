@@ -14,17 +14,18 @@
 
         </div>
         <!-- Search Box -->
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <input type="text" class="form-control" placeholder="Search...">
-        </div>
+        </div> --}}
         <!-- Table -->
+        @if($stocks -> count() >0 )
         <table class="table table-bordered table-hover">
             <thead class="text-capitalize text-center">
                 <tr>
                     <th>#</th>
                     <th> @sortablelink('blood_type_id', 'Blood Type')</th>
                     <th>@sortablelink('volume') (ml)</th>
-                    <th>action</th>
+                    {{-- <th>action</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +34,7 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $stock->bloodType->group }}</td>
                         <td>{{ $stock->volume }}</td>
-                        <td class="text-center ">
+                        {{-- <td class="text-center ">
                             <a href=""  class="btn btn-outline-info  rounded ">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -41,12 +42,22 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <!-- Pagination -->
-        {{ $stocks->links() }}
+        <div class="pagination justify-content-center align-items-center">
+            {{ $stocks->links() }}
+            <p class="mx-2 text-info">
+                {{ $stocks->count() }} of {{ $stocks->total() }} 
+            </p>
+
+        </div>
+        @else
+        <div class="alert alert-info" role="alert">
+            No blood types found.
+        </div>
+    @endif
     </div>
 @endsection

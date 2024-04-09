@@ -19,7 +19,10 @@
 
             <div class="mb-3 ">
                 <label for="volume" class="form-label">Volume</label>
-                <input type="number" class="form-control" id="volume" placeholder="Enter Volume" name="volume">
+                <input type="number" class="form-control" id="volume" placeholder="Enter Volume" name="volume" min="0">
+                @error('volume')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3 ">
                 <label for="role" class="form-label">Blood Type</label>
@@ -31,6 +34,9 @@
                     @endforeach
 
                 </select>
+                @error('blood_type_id')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
             </div>
 
 

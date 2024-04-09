@@ -25,7 +25,7 @@ class BloodGroup extends Model
     }
     public function bloodStock()
     {
-        return $this->hasMany(BloodStock::class, 'blood_type_id','id');
+        return $this->hasOne(BloodStock::class,'blood_type_id','id');
     }
     public function requestHistories()
     {

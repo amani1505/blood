@@ -44,13 +44,7 @@
             </a>
         </li>
         <hr class="sidebar-divider">
-        <li class="nav-item {{ str_contains($route, 'hospitals')  ? 'active' : '' }} ">
-            <a class="nav-link" href="{{ route('hospital.hospitals') }}">
-                <i class="fas fa-building"></i>
-                <span>Hospitals</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider">
+        
         <li class="nav-item {{ str_contains($route, 'requests')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('request.requests') }}">
                 <i class="fas fa-bullhorn"></i>
@@ -64,6 +58,14 @@
                 <span>Request History</span>
             </a>
         </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{ str_contains($route, 'hospitals')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('hospital.hospitals') }}">
+                <i class="fas fa-building"></i>
+                <span>Hospitals</span>
+            </a>
+        </li>
+       
         {{-- <hr class="sidebar-divider"> --}}
     
       

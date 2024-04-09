@@ -22,6 +22,6 @@ class BloodStock extends Model
 
     public function bloodType()
     {
-        return $this->belongsTo(BloodGroup::class, 'id', 'hospital_id');
+        return $this->belongsTo(BloodGroup::class, 'blood_type_id','id');
     }
 }
