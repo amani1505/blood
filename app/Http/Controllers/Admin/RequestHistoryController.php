@@ -98,13 +98,16 @@ class RequestHistoryController extends Controller
             $requestHistory->hospital_id = $validatedData['hospital_id'];
             $requestHistory->user_hospital_id = $request->user()->hospital_id;
             $requestHistory->save();
+            error_log('Request history saved successfully.');
+
     
-            return redirect()->route('admin.history.index')->with(['message' => 'Request history has been stored successfully.', 'alert-type' => 'success']);
+            return redirect()->route('requestHistory.histories')->with(['message' => 'Request history has been stored successfully.', 'alert-type' => 'success']);
 
     
         } catch (\Exception $e) {
+            error_log('Error occurred while storing request history: ' . $e->getMessage());
             // Handle other exceptions
-            return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request.'])->withInput();
+            return redirect()->back()->withErrors(['message' => 'An error occurred while processing your request.','alert-type' => 'error'])->withInput();
         }
     }
 }

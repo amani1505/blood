@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('request_histories', function (Blueprint $table) {
             $table->id();
           
-            $table->string('volume');
+            $table->integer('volume');
+            $table->enum('status',['pending','rejected','approved'])->default('pending');
           
             $table->unsignedBigInteger('blood_type_id'); 
             $table->unsignedBigInteger('hospital_id'); 

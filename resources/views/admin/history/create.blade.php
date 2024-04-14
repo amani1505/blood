@@ -6,6 +6,11 @@
     <h1 class="h4 mb-0 text-gray-800">Request History</h1>
 </div>
 <div class="container bg-white rounded p-4">
+    <div class="pull-right mb-1">
+        <a class="btn btn-light" href="{{ route('requestHistory.histories') }}" enctype="multipart/form-data">
+            <i class="fas fa-angle-left"></i>
+        </a>
+    </div>
     <h4 class="mb-3">Check Available Stock</h4>
     <!-- Form -->
     <form  id="check-form"   action="{{ route('requestHistory.check') }}" method="POST">

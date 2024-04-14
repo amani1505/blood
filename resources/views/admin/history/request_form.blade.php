@@ -1,5 +1,6 @@
 <form action="{{ route('requestHistory.store') }}" method="POST" id="create">
     @csrf
+    @method('POST')
     <input type="hidden" name="volume" value="{{ $volume }}">
     <input type="hidden" name="blood_type_id" value="{{ $bloodTypeId }}">
     <input type="hidden" id="hospital_id" name="hospital_id" value="">

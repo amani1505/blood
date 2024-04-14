@@ -17,11 +17,11 @@ class Request extends Model
 
     public function hospital()
     {
-        return $this->belongsTo(Hospital::class, 'hospital_id','id' );
+        return $this->belongsTo(Hospital::class, 'id', 'hospital_id');
     }
     public function bloodType()
     {
-        return $this->belongsTo(BloodGroup::class, 'blood_type_id','id');
+        return $this->belongsTo(BloodGroup::class, 'id', 'blood_type_id');
     }
 
     

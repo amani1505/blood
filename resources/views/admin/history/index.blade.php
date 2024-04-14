@@ -17,60 +17,80 @@
         <div class="d-flex justify-content-end mb-3">
             <a href="{{ route('requestHistory.create') }}" class="btn btn-info ">
                 <i class="fas fa-plus"></i>
-                </a>
+            </a>
 
-        </div> 
-     
+        </div>
+
         <!-- Search Box -->
         <div class="mb-3">
             <input type="text" class="form-control" placeholder="Search...">
         </div>
         <!-- Table -->
-        @if($histories -> count() >0 )
-        <table class="table table-bordered table-hover">
-            <thead class=" text-capitalize text-center">
-                <tr>
-                    <th>#</th>
-                    <th>@sortablelink('hospital_id','Hospital')</th>
-                    <th>@sortablelink('blood_type_id','Blood Type')</th>
-                    <th>@sortablelink('volume')(ml)</th>
-                  
-                   
-                 
-              
-                    
+        @if ($histories->count() > 0)
+            <table class="table table-bordered table-hover">
+                <thead class=" text-capitalize text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>@sortablelink('hospital_id', 'Hospital')</th>
+                        <th>@sortablelink('blood_type_id', 'Blood Type')</th>
+                        <th>@sortablelink('volume')(ml)</th>
+                        <th>@sortablelink('status')</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($histories as $index => $history)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{$history -> hospital -> name}}</td>
-                    <td>{{$history -> bloodType -> group}}</td>
-                    <td>{{$history -> volume}}</td>
-                
-                </tr>
-                
 
-                @endforeach
-               
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-        <!-- Pagination -->
-        <div class="pagination justify-content-center align-items-center">
-            {{ $histories->links() }}
-            <p class="mx-2 text-info">
-                {{ $histories->count() }} of {{ $histories->total() }} 
-            </p>
 
-        </div>
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($histories as $index => $history)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $history->hospital->name }}</td>
+                            <td>{{ $history->bloodType->group }}</td>
+                            <td>{{ $history->volume }}</td>
+                            <td class="text-center"> <span class="badge badge-{{ getStatusBadgeClass($history->status) }}">
+                                    {{ $history->status }}
+                                </span></td>
+
+                        </tr>
+                    @endforeach
+
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+            <!-- Pagination -->
+            <div class="pagination justify-content-center align-items-center">
+                {{ $histories->links() }}
+                <p class="mx-2 text-info">
+                    {{ $histories->count() }} of {{ $histories->total() }}
+                </p>
+
+            </div>
         @else
-        <div class="alert alert-info" role="alert">
-            No request history found.
-        </div>
-    @endif
+            <div class="alert alert-info" role="alert">
+                No request history found.
+            </div>
+        @endif
     </div>
 
+
+
 @endsection
+@php
+    function getStatusBadgeClass($status)
+    {
+        switch ($status) {
+            case 'pending':
+                return 'warning';
+            case 'approved':
+                return 'success';
+            case 'rejected':
+                return 'danger';
+            default:
+                return 'secondary';
+        }
+    }
+@endphp

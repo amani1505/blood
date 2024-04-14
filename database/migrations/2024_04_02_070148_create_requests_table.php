@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('volume');
             $table->string('status');
-            $table->unsignedBigInteger('blood_type_id'); 
-            $table->unsignedBigInteger('hospital_id'); 
-            $table->foreign('blood_type_id')->references('id')->on('blood_groups')->onDelete('cascade'); 
-            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 
+            $table->unsignedBigInteger('blood_type_id');
+            $table->unsignedBigInteger('hospital_id');
+            $table->unsignedBigInteger('user_hospital_id');
+            $table->foreign('blood_type_id')->references('id')->on('blood_groups')->onDelete('cascade');
+            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
+            $table->foreign('user_hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
 
             $table->timestamps();
         });
