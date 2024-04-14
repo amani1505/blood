@@ -32,6 +32,15 @@ class AdminSeeder extends Seeder
             'hospital_id'=> '1'
     
         ]);
+        User::insert([
+            'first_name'=>'Robinson',
+            'last_name'=>'Anthony',
+            'username' => 'user',
+            'password' => bcrypt('password'),
+            'role' => 'ADMIN',
+            'hospital_id'=> '2'
+    
+        ]);
         BloodGroup::insert([
             'group'=>'A+',
             'description'=>'Can get Receive from O+ and A+ also can Give A+ and AB',

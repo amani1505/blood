@@ -56,7 +56,7 @@
         </div>
         @else
         <div class="alert alert-info" role="alert">
-            No blood types found.
+            No stock found.
         </div>
     @endif
     </div>

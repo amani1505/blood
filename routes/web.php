@@ -36,7 +36,16 @@ Route::name('stock.')->prefix('stock')->middleware(['auth', 'admin'])->group(fun
     Route::post('/store', [Admin\BloodStockController::class, 'store'])->name('store');
 
 });
+Route::name('requestHistory.')->prefix('requestHistory')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [Admin\RequestHistoryController::class, 'index'])->name('histories');
+    Route::get('/create', [Admin\RequestHistoryController::class, 'create'])->name('create');
+    Route::post('/check', [Admin\RequestHistoryController::class, 'checkVolumeAndBloodType'])->name('check');
+    
 
+    Route::post('/store', [Admin\RequestHistoryController::class, 'store'])->name('store');
+   
+   
+});
 
 
 
@@ -51,9 +60,4 @@ Route::name('request.')->prefix('request')->middleware(['auth', 'admin'])->group
     Route::get('/', [Admin\DashboardController::class, 'request'])->name('requests');
 
 });
-Route::name('requestHistory.')->prefix('requestHistory')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', [Admin\DashboardController::class, 'requestHistory'])->name('history');
-    Route::get('/create', [Admin\DashboardController::class, 'addRequest'])->name('createRequest');
-   
-   
-});
+

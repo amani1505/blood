@@ -52,8 +52,8 @@
             </a>
         </li>
         <hr class="sidebar-divider">
-        <li class="nav-item {{ str_contains($route, 'history')  ? 'active' : '' }} ">
-            <a class="nav-link" href="{{ route('requestHistory.history') }}">
+        <li class="nav-item {{ str_contains($route, 'histories')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('requestHistory.histories') }}">
                 <i class="fas fa-history"></i>
                 <span>Request History</span>
             </a>

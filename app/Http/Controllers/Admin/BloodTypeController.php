@@ -11,9 +11,6 @@ use Illuminate\Database\QueryException;
 
 class BloodTypeController extends Controller
 {
-
-
-
     public function index(Request $request)
     {
         $filter = $request->query('filter');
