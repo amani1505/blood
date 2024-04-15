@@ -22,9 +22,9 @@
         </div>
 
         <!-- Search Box -->
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <input type="text" class="form-control" placeholder="Search...">
-        </div>
+        </div> --}}
         <!-- Table -->
         @if ($histories->count() > 0)
             <table class="table table-bordered table-hover">

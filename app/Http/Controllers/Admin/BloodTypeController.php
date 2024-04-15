@@ -13,7 +13,7 @@ class BloodTypeController extends Controller
 {
     public function index(Request $request)
     {
-        $filter = $request->query('filter');
+    $filter = $request->query('filter');
     $user = $request->user();
     
     $sort = $request->get('id');

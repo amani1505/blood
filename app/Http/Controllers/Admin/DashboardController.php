@@ -3,48 +3,38 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\BloodStock;
+use App\Models\RequestHistory;
+
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.index');
+        $user = $request->user();
+    
+        // Get total number of requests
+        $totalRequests = RequestHistory::where('user_hospital_id', $user->hospital_id)->count();
+    
+        // Get total number of approved requests
+        $totalApprovedRequests = RequestHistory::where('user_hospital_id', $user->hospital_id)
+            ->where('status', 'approved')->count();
+    
+        // Get total number of pending requests
+        $totalPendingRequests = RequestHistory::where('user_hospital_id', $user->hospital_id)
+            ->where('status', 'pending')->count();
+    
+        // Get total number of rejected requests
+        $totalRejectedRequests = RequestHistory::where('user_hospital_id', $user->hospital_id)
+            ->where('status', 'rejected')->count();
+    
+        $bloodStocks = BloodStock::with('bloodType')->where('hospital_id', $user->hospital_id)->get();
+    
+        return view('admin.index', compact('totalRequests', 'totalApprovedRequests', 'totalPendingRequests', 'totalRejectedRequests', 'bloodStocks'));
     }
-    public function donor()
-    {
-        return view('admin.donor');
-    }
-    public function addDonor()
-    {
-        return view('admin.addDonor');
-    }
-    public function hospital()
-    {
-        return view('admin.hospitals');
-    }
-    public function addHospital()
-    {
-        return view('admin.addHospital');
-    }
-    public function request()
-    {
-        return view('admin.request');
-    }
-    public function requestHistory()
-    {
-        return view('admin.requestHistory');
-    }
-    public function addRequest()
-    {
-        return view('admin.addRequest');
-    }
-    public function stock()
-    {
-        return view('admin.stock');
-    }
-    public function addStock()
-    {
-        return view('admin.addStock');
-    }
+    
+ 
+  
     
 }
