@@ -57,7 +57,8 @@ Route::name('hospital.')->prefix('hospital')->middleware(['auth', 'admin'])->gro
 });
 
 Route::name('request.')->prefix('request')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', [Admin\DashboardController::class, 'request'])->name('requests');
+    Route::get('/', [Admin\RequestController::class, 'index'])->name('requests');
+    Route::put('/update/{id}', [Admin\RequestController::class, 'update'])->name('update');
 
 });
 

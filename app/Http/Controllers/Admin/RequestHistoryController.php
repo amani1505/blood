@@ -21,8 +21,8 @@ class RequestHistoryController extends Controller
         $sort = !empty($sort) ? $sort : 'id';
 
         // Query request histories with their related blood types and hospitals
-        $query = RequestHistory::with(['bloodType', 'hospital'])
-            ->orderBy($sort, $direction);
+        $query = RequestHistory::with(['bloodType', 'hospital']);
+           
 
         if (!empty($filter)) {
             // You can filter by blood type group or hospital name if needed
@@ -34,6 +34,8 @@ class RequestHistoryController extends Controller
 
         // Filter request histories based on user's institute ID
         $query->where('user_hospital_id', $user->hospital_id);
+        $query->orderByRaw("CASE WHEN status = 'pending' THEN 0 ELSE 1 END")
+        ->orderBy($sort, $direction);
 
         $histories = $query->paginate(10);
 
@@ -98,14 +100,14 @@ class RequestHistoryController extends Controller
             $requestHistory->hospital_id = $validatedData['hospital_id'];
             $requestHistory->user_hospital_id = $request->user()->hospital_id;
             $requestHistory->save();
-            error_log('Request history saved successfully.');
+          
 
     
-            return redirect()->route('requestHistory.histories')->with(['message' => 'Request history has been stored successfully.', 'alert-type' => 'success']);
+            return redirect()->route('requestHistory.histories')->with(['message' => 'Request has been stored successfully.', 'alert-type' => 'success']);
 
     
         } catch (\Exception $e) {
-            error_log('Error occurred while storing request history: ' . $e->getMessage());
+            error_log('Error occurred while storing request : ' . $e->getMessage());
             // Handle other exceptions
             return redirect()->back()->withErrors(['message' => 'An error occurred while processing your request.','alert-type' => 'error'])->withInput();
         }

@@ -58,13 +58,13 @@
                 <span>Request History</span>
             </a>
         </li>
-        <hr class="sidebar-divider">
+        {{-- <hr class="sidebar-divider">
         <li class="nav-item {{ str_contains($route, 'hospitals')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('hospital.hospitals') }}">
                 <i class="fas fa-building"></i>
                 <span>Hospitals</span>
             </a>
-        </li>
+        </li> --}}
        
         {{-- <hr class="sidebar-divider"> --}}
     

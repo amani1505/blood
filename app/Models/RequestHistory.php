@@ -19,6 +19,10 @@ class RequestHistory extends Model
     {
         return $this->belongsTo(Hospital::class, 'hospital_id','id');
     }
+    public function userHospital()
+    {
+        return $this->belongsTo(Hospital::class, 'user_hospital_id','id');
+    }
     public function bloodType()
     {
         return $this->belongsTo(BloodGroup::class,  'blood_type_id','id');

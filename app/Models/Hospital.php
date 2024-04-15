@@ -20,6 +20,10 @@ class Hospital extends Model
     {
         return $this->hasMany(User::class, 'hospital_id','id');
     }
+    public function userHospitals()
+    {
+        return $this->belongsTo(RequestHistory::class, 'user_hospital_id','id');
+    }
     public function requests()
     {
         return $this->hasMany(Request::class, 'hospital_id','id');
