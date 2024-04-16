@@ -59,13 +59,14 @@ class RequestHistoryController extends Controller
             'blood_type_id' => 'required|exists:blood_groups,id',
         ]);
     
+        $user = $request->user();
         // Get the input volume and blood type
         $volume = $request->input('volume');
         $bloodTypeId = $request->input('blood_type_id');
        
     
         // Find blood stocks matching the blood type and volume
-        $bloodStocks = BloodStock::with('hospital')->where('blood_type_id', $bloodTypeId)
+        $bloodStocks = BloodStock::with('hospital')->where('blood_type_id', $bloodTypeId)->where('hospital_id' ,'!=', $user -> hospital_id)
             ->where('volume', '>=', $volume)
             ->get();
     

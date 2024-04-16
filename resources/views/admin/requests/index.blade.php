@@ -95,7 +95,7 @@
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="action" value="approve">
-                                <button type="submit" class="btn btn-success">Reject</button>
+                                <button type="submit" class="btn btn-success">Approve</button>
                             </form>
                         </div>
                     </div>
