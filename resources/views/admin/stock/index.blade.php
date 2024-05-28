@@ -33,7 +33,12 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $stock->bloodType->group }}</td>
+                        @if($stock->volume > 5000)
                         <td>{{ $stock->volume }}</td>
+                        @else
+                        <td class="bg-danger text-white">{{ $stock->volume }}</td>
+                        
+                        @endif
                         {{-- <td class="text-center ">
                             <a href=""  class="btn btn-outline-info  rounded ">
                                 <i class="fas fa-edit"></i>
