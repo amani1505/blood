@@ -57,12 +57,20 @@
                             <td>{{ $bloodType->description }}</td>
 
                             <td class="text-center ">
+                            <div class="row">
+                              <div class="col-6">
                                 <a href="{{ route('bloodType.edit', $bloodType->id) }}"  class="btn btn-outline-info  rounded ">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                              </div>
+                              <div class="col-6">
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal">
                                     <i class="fas fa-trash"></i>
                                 </button>
+                              </div>
+                              
+
+                            </div>
                             
                             </td>
 

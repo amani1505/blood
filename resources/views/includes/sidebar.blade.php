@@ -66,11 +66,12 @@
             </a>
         </li>
         <hr class="sidebar-divider">
-        <li class="nav-item {{ str_contains($route, 'stocks')  ? 'active' : '' }} ">
-            <a class="nav-link" href="{{ route('stock.stocks') }}">
-                <i class="fas fa-hand-holding-heart"></i>
-                <span>Blood Stock</span>
+        <li class="nav-item {{ str_contains($route, 'requests')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('request.requests') }}">
+                <i class="fas fa-bullhorn"></i>
+                <span>Blood Requests</span>
             </a>
+        </li>
         </li>
     }
       

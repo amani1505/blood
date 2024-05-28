@@ -23,10 +23,10 @@
             </div>
             <div class="col-md-5 mb-md-0 mb-3">
                 {{-- <label for="blood_type" class="form-label">Blood Type</label> --}}
-                <select class="custom-select" aria-label="Default select example" id="blood_type_id" name="blood_type_id" required>
+                <select class="custom-select" aria-label="Default select example" id="blood_group" name="blood_group" required>
                     <option selected disabled>Select blood type</option>
                     @foreach($bloodTypes as $bloodType)
-                    <option value="{{ $bloodType->id }}">{{ $bloodType->group }}</option>
+                    <option value="{{ $bloodType->group }}">{{ $bloodType->group }}</option>
                     @endforeach
                 </select>
             </div>
@@ -59,17 +59,20 @@ $('#check-form').submit(function (e) {
         data: $(this).serialize(),
         success: function (response) {
             if (response.success) {
+              
                 // Blood stock is available, display the request form
                 $('#request-form').html(response.html);
+                $('#central-form').empty();
             } else {
                 // Display error message
-
-                $('#central-form').html(response.html);
-               // $('#popup-banner').text(response.message).show();
-                $('#request-form').empty(); 
-               // setTimeout(function () {
-                 //   $('#popup-banner').fadeOut('slow');
-            //    }, 3000);
+                // console.log("Displaying central form",response.html);
+                // $('#central-form').html(response.html);
+               $('#popup-banner').text(response.message).show();
+               
+               setTimeout(function () {
+                   $('#popup-banner').fadeOut('slow');
+               }, 3000);
+             $('#request-form').empty(); 
             }
         },
         error: function (xhr, status, error) {
