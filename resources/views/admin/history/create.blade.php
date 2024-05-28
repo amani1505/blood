@@ -39,7 +39,11 @@
 
     <div  id="request-form">
         <form action="" ></form>
-       </div>
+    </div>
+
+    <div  id="central-form">
+        <form action="" ></form>
+    </div>
 
 <div id="popup-banner" class="popup-banner"></div>
 
@@ -59,11 +63,13 @@ $('#check-form').submit(function (e) {
                 $('#request-form').html(response.html);
             } else {
                 // Display error message
-                $('#popup-banner').text(response.message).show();
+
+                $('#central-form').html(response.html);
+               // $('#popup-banner').text(response.message).show();
                 $('#request-form').empty(); 
-                setTimeout(function () {
-                    $('#popup-banner').fadeOut('slow');
-                }, 3000);
+               // setTimeout(function () {
+                 //   $('#popup-banner').fadeOut('slow');
+            //    }, 3000);
             }
         },
         error: function (xhr, status, error) {

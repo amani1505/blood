@@ -22,7 +22,7 @@ class RequestHistoryController extends Controller
 
         // Query request histories with their related blood types and hospitals
         $query = RequestHistory::with(['bloodType', 'hospital']);
-           
+
 
         if (!empty($filter)) {
             // You can filter by blood type group or hospital name if needed
@@ -35,7 +35,7 @@ class RequestHistoryController extends Controller
         // Filter request histories based on user's institute ID
         $query->where('user_hospital_id', $user->hospital_id);
         $query->orderByRaw("CASE WHEN status = 'pending' THEN 0 ELSE 1 END")
-        ->orderBy($sort, $direction);
+            ->orderBy($sort, $direction);
 
         $histories = $query->paginate(10);
 
@@ -58,30 +58,43 @@ class RequestHistoryController extends Controller
             'volume' => 'required|numeric|min:1',
             'blood_type_id' => 'required|exists:blood_groups,id',
         ]);
-    
+
         $user = $request->user();
         // Get the input volume and blood type
         $volume = $request->input('volume');
         $bloodTypeId = $request->input('blood_type_id');
-       
-    
+
+
         // Find blood stocks matching the blood type and volume
-        $bloodStocks = BloodStock::with('hospital')->where('blood_type_id', $bloodTypeId)->where('hospital_id' ,'!=', $user -> hospital_id)
+        $bloodStocks = BloodStock::with('hospital')->where('blood_type_id', $bloodTypeId)->where('hospital_id', '!=', $user->hospital_id)
             ->where('volume', '>=', $volume)
             ->get();
-    
+
         if ($bloodStocks->isNotEmpty()) {
             $request->session()->put('volume', $volume);
             $request->session()->put('blood_type_id', $bloodTypeId);
-    
+
             // Render the view with blood stock data
-            $html = View::make('admin.history.request_form', ['bloodStocks' => $bloodStocks,'volume' => $volume,
-            'bloodTypeId' => $bloodTypeId,])->render();
-    
+            $html = View::make('admin.history.request_form', [
+                'bloodStocks' => $bloodStocks, 'volume' => $volume,
+                'bloodTypeId' => $bloodTypeId,
+            ])->render();
+
             return response()->json(['success' => true, 'html' => $html]);
         } else {
             // If no blood stock is found, return error response
-            return response()->json(['success' => false, 'message' => 'No blood stock available for the specified volume and blood type.']);
+            // return response()->json(['success' => false, 'message' => 'No blood stock available for the specified volume and blood type.']);
+            $bloodStock = BloodStock::with('hospital')->where('blood_type_id', $bloodTypeId)->where('hospital_id', '!=', $user->hospital_id)
+                ->where('volume', '<', $volume)
+                ->first();
+
+
+            $html = View::make('admin.history.central_form', [
+                'bloodStock' => $bloodStock, 'volume' => $volume,
+                'bloodTypeId' => $bloodTypeId,
+            ])->render();
+
+            return response()->json(['success' => true, 'html' => $html]);
         }
     }
     public function store(Request $request)
@@ -101,16 +114,14 @@ class RequestHistoryController extends Controller
             $requestHistory->hospital_id = $validatedData['hospital_id'];
             $requestHistory->user_hospital_id = $request->user()->hospital_id;
             $requestHistory->save();
-          
 
-    
+
+
             return redirect()->route('requestHistory.histories')->with(['message' => 'Request has been stored successfully.', 'alert-type' => 'success']);
-
-    
         } catch (\Exception $e) {
             error_log('Error occurred while storing request : ' . $e->getMessage());
             // Handle other exceptions
-            return redirect()->back()->withErrors(['message' => 'An error occurred while processing your request.','alert-type' => 'error'])->withInput();
+            return redirect()->back()->withErrors(['message' => 'An error occurred while processing your request.', 'alert-type' => 'error'])->withInput();
         }
     }
 }
