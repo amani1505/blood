@@ -13,8 +13,9 @@ class AuthController extends Controller
         if (!Auth::user())
             return view('login');
 
-        return match (Auth::user()->role) {
-            'ADMIN' => redirect()->route('admin.dashboard')->with([
+        $user = Auth::user();
+        return match ($user->role) {
+            'HOSPITAL_ADMIN', 'CENTRAL_ADMIN' => redirect()->route('admin.dashboard')->with([
                 'message' => 'Welcome Admin',
                 'alert-type' => 'success',
             ]),
@@ -32,32 +33,26 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $credentials = request(['username', 'password']);
+        $credentials = $request->only('username', 'password');
         if (!Auth::attempt($credentials))
             return redirect('/')->with([
                 'message' => 'User and password wrong',
                 'alert-type' => 'error',
             ]);
 
-        $user = User::where('username', $request->username)->first();
-        if (!hash_equals($request->password, $user->password))
-            return redirect('/')->with([
-                'message' => 'User and password wrong',
-                'alert-type' => 'error',
-            ]);
-            $request->session()->put('user', $user);
-        
-
-        return match (Auth::user()->role) {
-            'ADMIN' => redirect()->route('admin.dashboard')->with([
+        $user = Auth::user(); // Correct way to get the authenticated user
+        if ($user->role === 'HOSPITAL_ADMIN' || $user->role === 'CENTRAL_ADMIN') {
+            return redirect()->route('admin.dashboard')->with([
                 'message' => 'Welcome Admin',
                 'alert-type' => 'success',
-            ]),
-            default => redirect('/')->with([
-                'message' => 'Please Login',
+            ]);
+        } else {
+            Auth::logout();
+            return redirect('/')->with([
+                'message' => 'Please login',
                 'alert-type' => 'error',
-            ]),
-        };
+            ]);
+        }
     }
 
     public function logout()

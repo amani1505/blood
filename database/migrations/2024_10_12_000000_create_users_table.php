@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('username')->unique();
             $table->string('password');
-            $table->enum('role', ['ADMIN', 'BLOOD_REQUESTER']);
+            $table->enum('role', ['HOSPITAL_ADMIN', 'CENTRAL_ADMIN']);
             $table->unsignedBigInteger('hospital_id');
             $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 
             $table->rememberToken();

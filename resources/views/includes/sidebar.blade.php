@@ -22,7 +22,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    @if($user == 'ADMIN')
+    @if($user == 'HOSPITAL_ADMIN')
         <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -58,6 +58,25 @@
                 <span>Request History</span>
             </a>
         </li>
+    @elseif($user == 'CENTRAL_ADMIN'){
+        <li class="nav-item {{ str_contains($route, 'dashboard')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{ str_contains($route, 'stocks')  ? 'active' : '' }} ">
+            <a class="nav-link" href="{{ route('stock.stocks') }}">
+                <i class="fas fa-hand-holding-heart"></i>
+                <span>Blood Stock</span>
+            </a>
+        </li>
+    }
+      
+      
+      
+      
         {{-- <hr class="sidebar-divider">
         <li class="nav-item {{ str_contains($route, 'hospitals')  ? 'active' : '' }} ">
             <a class="nav-link" href="{{ route('hospital.hospitals') }}">

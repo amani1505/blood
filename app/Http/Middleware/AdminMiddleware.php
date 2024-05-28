@@ -9,7 +9,7 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user() && auth()->user()->role == 'ADMIN')
+        if (auth()->user() && auth()->user()->role == 'HOSPITAL_ADMIN' || auth()->user()->role == 'CENTRAL_ADMIN'  )
             return $next($request);
         return redirect('/');
     }
