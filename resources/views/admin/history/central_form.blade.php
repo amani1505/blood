@@ -12,6 +12,8 @@
         <h5 class="my-3">Blood Stock Information</h5>
         <div class="row">
             @foreach($bloodStocks as $bloodStock)
+              
+
                 <div class="col-md-3">
         
                         <div class="mb-4">
@@ -30,7 +32,7 @@
                                                 {{$bloodStock->hospital->name}}
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                {{ $volume }}
+                                                {{ $bloodStock->volume }}
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-success mt-3 w-100" onclick="selectBloodStock({{ $bloodStock->hospital_id }})">Submit Request</button>

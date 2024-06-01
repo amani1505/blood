@@ -42,7 +42,14 @@ class BloodStockController extends Controller
     {
 
         $user = $request->user();
-        $bloodTypes = BloodGroup::orderBy('id', 'asc')->where('hospital_id', $user->hospital_id)->get();
+        // $bloodTypes = BloodGroup::orderBy('id', 'asc')->where('hospital_id', $user->hospital_id)->get();
+        $query = BloodGroup::orderBy('id', 'asc');
+        $query->whereHas('hospitals', function ($q) use ($user) {
+            $q->where('hospitals.id', $user->hospital_id);
+        });
+
+        $bloodTypes = $query->paginate(100);
+
 
         return view('admin.stock.create', compact('bloodTypes'));
     }

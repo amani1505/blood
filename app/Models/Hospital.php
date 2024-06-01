@@ -12,9 +12,9 @@ class Hospital extends Model
         'location',
         'name'   
     ];
-    public function bloodTypes()
+    public function bloodGroups()
     {
-        return $this->hasMany(BloodGroup::class, 'hospital_id','id');
+        return $this->belongsToMany(BloodGroup::class, 'blood_group_hospital', 'hospital_id', 'blood_group_id');
     }
     public function users()
     {

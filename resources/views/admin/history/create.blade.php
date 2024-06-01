@@ -19,14 +19,14 @@
         <div class="row align-items-center">
             <div class="col-md-5 mb-md-0 mb-3">
                 {{-- <label for="quantity" class="form-label">Volume</label> --}}
-                <input type="number" class="form-control" id="volume" placeholder="Enter Volume" name="volume" required>
+                <input type="number" class="form-control" id="volume" placeholder="Enter Volume" name="volume" min="0" required>
             </div>
             <div class="col-md-5 mb-md-0 mb-3">
                 {{-- <label for="blood_type" class="form-label">Blood Type</label> --}}
-                <select class="custom-select" aria-label="Default select example" id="blood_group" name="blood_group" required>
+                <select class="custom-select" aria-label="Default select example" id="blood_group" name="blood_type_id" required>
                     <option selected disabled>Select blood type</option>
                     @foreach($bloodTypes as $bloodType)
-                    <option value="{{ $bloodType->group }}">{{ $bloodType->group }}</option>
+                    <option value="{{ $bloodType->id }}">{{ $bloodType->group }}</option>
                     @endforeach
                 </select>
             </div>
@@ -50,38 +50,27 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-// Submit form using Ajax
-$('#check-form').submit(function (e) {
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: $(this).serialize(),
-        success: function (response) {
-            if (response.success) {
-              
-                // Blood stock is available, display the request form
-                $('#request-form').html(response.html);
-                $('#central-form').empty();
-            } else {
-                // Display error message
-                // console.log("Displaying central form",response.html);
-                // $('#central-form').html(response.html);
-               $('#popup-banner').text(response.message).show();
-               
-               setTimeout(function () {
-                   $('#popup-banner').fadeOut('slow');
-               }, 3000);
-             $('#request-form').empty(); 
+    // Submit form using Ajax
+    $('#check-form').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response.success) {
+                    $('#request-form').html(response.html);
+                    $('#central-form').empty();
+                } else {
+                    $('#central-form').html(response.html);
+                    $('#request-form').empty();
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
             }
-        },
-        error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-        }
+        });
     });
-});
-
-
 </script>
 </body>
 </html>

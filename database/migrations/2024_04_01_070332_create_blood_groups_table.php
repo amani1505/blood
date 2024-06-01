@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('group');
             $table->string('description');
-            $table->unsignedBigInteger('hospital_id');
-            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

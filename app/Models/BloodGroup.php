@@ -11,14 +11,13 @@ class BloodGroup extends Model
     protected $fillable = [
         'group',
         'description',
-        'hospital_id',
         'status'
     ];
 
   
-    public function hospital()
+    public function hospitals()
     {
-        return $this->belongsTo(Hospital::class, 'hospital_id', 'id');
+        return $this->belongsToMany(Hospital::class, 'blood_group_hospital', 'blood_group_id', 'hospital_id');
     }
     public function requests()
     {

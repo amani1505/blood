@@ -47,66 +47,58 @@ class RequestHistoryController extends Controller
     {
 
         $user = $request->user();
-        $bloodTypes = BloodGroup::orderBy('id', 'asc')
-            ->where('hospital_id', '=', $user->hospital_id)->distinct('group')
-            ->get();
+        $user = $request->user();
+        // $bloodTypes = BloodGroup::orderBy('id', 'asc')->where('hospital_id', $user->hospital_id)->get();
+        $query = BloodGroup::orderBy('id', 'asc');
+        $query->whereHas('hospitals', function ($q) use ($user) {
+            $q->where('hospitals.id', $user->hospital_id);
+        });
+
+        $bloodTypes = $query->paginate(100);
 
         return view('admin.history.create', compact('bloodTypes'));
     }
     public function checkVolumeAndBloodType(Request $request)
     {
-        $user = $request->user();
+
         $request->validate([
             'volume' => 'required|numeric|min:1',
-            'blood_group' => 'required|exists:blood_groups,group',
+            'blood_type_id' => 'required|exists:blood_groups,id',
         ]);
 
-        $bloodTypes = BloodGroup::where('hospital_id', '!=', $user->hospital_id)
-            ->where('group', $request->input('blood_group')) // Assuming 'blood_group' is the name of the input field
-            ->pluck('id');
-
-
-        $bloodType = BloodGroup::where('hospital_id', '!=', $user->hospital_id)
-            ->where('group', $request->input('blood_group')) // Assuming 'blood_group' is the name of the input field
-            ->pluck('id')->first();
-
-
-        // Get the input volume and blood type ID
+        $user = $request->user();
+        // Get the input volume and blood type
         $volume = $request->input('volume');
+        $bloodTypeId = $request->input('blood_type_id');
 
-        $bloodStocks = BloodStock::with('hospital')
-            ->whereIn('blood_type_id', $bloodTypes) // Use whereIn to match blood types
+
+        // Find blood stocks matching the blood type and volume
+        $bloodStocks = BloodStock::with('hospital')->where('blood_type_id', $bloodTypeId)->where('hospital_id', '!=', $user->hospital_id)
             ->where('volume', '>=', $volume)
-            ->where('hospital_id', '!=', auth()->user()->hospital_id)
             ->get();
-
-            $bloodStock = BloodStock::with('hospital')
-            ->whereIn('blood_type_id', $bloodTypes) // Use whereIn to match blood types
-            ->where('volume', '<', $volume)
-            ->where('hospital_id', '!=', auth()->user()->hospital_id)
-            ->get();
-      
 
         if ($bloodStocks->isNotEmpty()) {
-            // Blood stock is available, render the view with blood stock data
+            $request->session()->put('volume', $volume);
+            $request->session()->put('blood_type_id', $bloodTypeId);
+
+            // Render the view with blood stock data
             $html = View::make('admin.history.request_form', [
-                'bloodStocks' => $bloodStocks,
-                'volume' => $volume,
-                'bloodTypeId' => $bloodTypes,
+                'bloodStocks' => $bloodStocks, 'volume' => $volume,
+                'bloodTypeId' => $bloodTypeId,
             ])->render();
 
             return response()->json(['success' => true, 'html' => $html]);
         } else {
-          
-    
-            // If no blood stock is found, return error response
-            $html = View::make('admin.history.central_form', [
-                'bloodStocks' => $bloodStock,
-                'volume' => $volume,
-                'bloodTypeId' => $bloodTypes->first(),
-            ])->render();
+            $bloodStock = BloodStock::with('hospital')->where('blood_type_id', $bloodTypeId)->where('hospital_id', '!=', $user->hospital_id)
+                ->where('volume', '<', $volume)
+                ->get();
 
-            return response()->json(['success' => false, 'message' => "No blood stock"]);
+
+            $html = View::make('admin.history.central_form', [
+                'bloodStocks' => $bloodStock, 'volume' => $volume,
+                'bloodTypeId' => $bloodTypeId,
+            ])->render();
+            return response()->json(['success' => false, 'html' => $html]);
         }
     }
 
